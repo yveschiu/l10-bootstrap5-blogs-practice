@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// simple view route example
+// Route::view('/', 'home.index')->name('home.index');
+// Route::view('/contact', 'home.contact')->name('home.contact');
 
-Auth::routes();
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
+
+// single action controller example
+Route::get('/about', AboutController::class)->name('home.about');
+
+Route::resource('posts', PostController::class);
+
+ROute::get('/recent-posts/{days_ago?}', function ($daysAgo = 20) {
+    return "Posts from {$daysAgo} days ago";
+})->name('posts.recent.index');
+
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

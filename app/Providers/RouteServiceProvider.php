@@ -36,5 +36,9 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+
+        // global route patterns
+        // when we see {id} in the route, we want to make sure it's a number
+        Route::pattern('id', '[0-9]+');
     }
 }
