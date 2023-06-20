@@ -32,7 +32,7 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $post = Post::create($request->validated());
-        return redirect()->route('posts.show', $post->id)->with('success', 'Post was created!');
+        return redirect()->route('posts.show', $post->id)->with('status', 'Post was created!');
     }
 
     /**
@@ -61,7 +61,7 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $post->update($request->validated());
-        return redirect()->route('posts.show', $post->id)->with('success', 'Post was updated!');
+        return redirect()->route('posts.show', $post->id)->with('status', 'Post was updated!');
     }
 
     /**
@@ -70,6 +70,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('posts.index')->with('success', 'Post was deleted!');
+        return redirect()->route('posts.index')->with('status', 'Post was deleted!');
     }
 }

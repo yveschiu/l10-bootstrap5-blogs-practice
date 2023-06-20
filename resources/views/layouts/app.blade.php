@@ -32,9 +32,9 @@
         </nav>
     </div>
     <div class="container">
-        @if (session()->has('success'))
+        @if (session()->has('status'))
             <div class="alert alert-success">
-                {{ session()->get('success') }}
+                {{ session()->get('status') }}
             </div>
         @endif
         @yield('content')
