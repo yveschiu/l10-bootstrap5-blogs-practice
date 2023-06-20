@@ -25,6 +25,11 @@ jobs:
         run: |
           composer install --no-scripts
 
+      - name: Install npm dependencies
+        run: |
+          npm install
+          npm run build
+
       - name: Prepare Laravel Application
         run: |
           cp .env.ci .env
